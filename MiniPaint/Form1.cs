@@ -11,7 +11,6 @@ using System.Windows.Forms;
 namespace MiniPaint {
     public partial class Paint : Form {
         //Variables
-        bool draw = false;
         int drawPosX;
         int drawPosY;
         int releasePosX;
@@ -42,18 +41,12 @@ namespace MiniPaint {
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e) {
-            //Set Drawing mode to true
-            draw = true;
-
             //Record Mouse Position
             drawPosX = e.X;
             drawPosY = e.Y;
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e) {
-            //Set Drawing mode to true
-            draw = false;
-
             //Record Mouse Release Position
             releasePosX = e.X;
             releasePosY = e.Y;
@@ -79,6 +72,7 @@ namespace MiniPaint {
 
         //Line
         public void drawLine() {
+            //Draw
             graphics.DrawLine(pen, new Point(drawPosX, drawPosY), new Point(releasePosX, releasePosY));
             pictureBox1.Image = bmp;
         }
@@ -89,13 +83,36 @@ namespace MiniPaint {
             int width = releasePosX - drawPosX;
             int height = releasePosY - drawPosY;
 
+            //Check if rectangle is drawn in opposite direction
+            if(width < 0) {
+                width = drawPosX - releasePosX;
+            }
+            if(height < 0) {
+                height = drawPosY - releasePosY;
+            }
+
+            //Draw
             graphics.DrawRectangle(pen, new Rectangle(new Point(drawPosX, drawPosY), new Size(width, height)));
             pictureBox1.Image = bmp;
         }
 
         //Ellipse
         public void drawEllipse() {
+            //Calculate Rectangle Size
+            int width = releasePosX - drawPosX;
+            int height = releasePosY - drawPosY;
 
+            //Check if rectangle is drawn in opposite direction
+            if (width < 0) {
+                width = drawPosX - releasePosX;
+            }
+            if (height < 0) {
+                height = drawPosY - releasePosY;
+            }
+
+            //Draw
+            graphics.DrawEllipse(pen, new RectangleF(new Point(drawPosX, drawPosY), new Size(width, height)));
+            pictureBox1.Image = bmp;
         }
 
         private void button1_Click(object sender, EventArgs e) {
