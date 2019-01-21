@@ -24,6 +24,8 @@ namespace MiniPaint {
         //Objects
         Bitmap bmp;
         Graphics graphics;
+        Color drawColor;
+        Pen pen;
 
         public Paint() {
             InitializeComponent();
@@ -33,6 +35,10 @@ namespace MiniPaint {
             graphics = Graphics.FromImage(bmp);
             graphics.Clear(Color.White);
             pictureBox1.Image = bmp;
+            drawColor = Color.Black;
+
+            //Create Pen
+            pen = new Pen(drawColor);
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e) {
@@ -58,6 +64,29 @@ namespace MiniPaint {
 
         //Draw Shape Selected
         private void drawShape() {
+            if (currentShape == MyShape.line) {
+                drawLine();
+            }
+
+            if (currentShape == MyShape.rectangle) {
+                drawRectangle();
+            }
+
+            if (currentShape == MyShape.ellipse) {
+                drawEllipse();
+            }
+        }
+
+        public void drawLine() {
+            graphics.DrawLine(pen, new Point(drawPosX, drawPosY), new Point(releasePosX, releasePosY));
+            pictureBox1.Image = bmp;
+        }
+
+        public void drawRectangle() {
+
+        }
+
+        public void drawEllipse() {
 
         }
 
