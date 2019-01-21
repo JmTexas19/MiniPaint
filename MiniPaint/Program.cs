@@ -11,10 +11,9 @@ namespace MiniPaint {
         /// </summary>
         [STAThread]
         static void Main() {
-            //Start Form
-            Application.Run(new Paint());
-
-
+            //Start Application
+            Paint paint = new Paint();
+            Application.Run(paint);
         }
     }
 }
