@@ -58,62 +58,26 @@ namespace MiniPaint {
 
         //Draw Shape Selected
         private void drawShape() {
+            Shape shape = null;
+
             if (currentShape == MyShape.line) {
-                drawLine();
+                shape = new ShapeLine();
             }
 
             if (currentShape == MyShape.rectangle) {
-                drawRectangle();
+                shape = new ShapeRectangle();
             }
 
             if (currentShape == MyShape.ellipse) {
-                drawEllipse();
+                shape = new ShapeEllipse();
             }
+
+            drawColoredShape(drawColor, shape);
         }
 
-        //Line
-        public void drawLine() {
-            //Draw
-            graphics.DrawLine(pen, new Point(drawPosX, drawPosY), new Point(releasePosX, releasePosY));
-            pictureBox1.Image = bmp;
-        }
-
-        //Rectangle
-        public void drawRectangle() {
-            //Calculate Rectangle Size
-            int width = releasePosX - drawPosX;
-            int height = releasePosY - drawPosY;
-
-            //Check if rectangle is drawn in opposite direction
-            if(width < 0) {
-                width = drawPosX - releasePosX;
-            }
-            if(height < 0) {
-                height = drawPosY - releasePosY;
-            }
-
-            //Draw
-            graphics.DrawRectangle(pen, new Rectangle(new Point(drawPosX, drawPosY), new Size(width, height)));
-            pictureBox1.Image = bmp;
-        }
-
-        //Ellipse
-        public void drawEllipse() {
-            //Calculate Rectangle Size
-            int width = releasePosX - drawPosX;
-            int height = releasePosY - drawPosY;
-
-            //Check if rectangle is drawn in opposite direction
-            if (width < 0) {
-                width = drawPosX - releasePosX;
-            }
-            if (height < 0) {
-                height = drawPosY - releasePosY;
-            }
-
-            //Draw
-            graphics.DrawEllipse(pen, new RectangleF(new Point(drawPosX, drawPosY), new Size(width, height)));
-            pictureBox1.Image = bmp;
+        //Draw Shape
+        public void drawColoredShape(Color color, Shape shape) {
+            shape.draw(graphics, pen, drawPosX, drawPosY, releasePosX, releasePosY, pictureBox1, bmp);
         }
 
         //Buttons
