@@ -34,9 +34,9 @@ namespace MiniPaint {
             graphics = Graphics.FromImage(bmp);
             graphics.Clear(Color.White);
             pictureBox1.Image = bmp;
-            drawColor = Color.Black;
 
             //Create Pen
+            drawColor = Color.Black;
             pen = new Pen(drawColor);
         }
 
@@ -115,6 +115,7 @@ namespace MiniPaint {
             pictureBox1.Image = bmp;
         }
 
+        //Buttons
         private void button1_Click(object sender, EventArgs e) {
             currentShape = MyShape.line;
         }
@@ -125,6 +126,22 @@ namespace MiniPaint {
 
         private void button3_Click(object sender, EventArgs e) {
             currentShape = MyShape.ellipse;
+        }
+
+        //Trackbars
+        private void trackBar1_Scroll(object sender, EventArgs e) {
+            drawColor = Color.FromArgb(trackBar1.Value, trackBar2.Value, trackBar3.Value);
+            pen.Color = drawColor;
+        }
+
+        private void trackBar2_Scroll(object sender, EventArgs e) {
+            drawColor = Color.FromArgb(trackBar1.Value, trackBar2.Value, trackBar3.Value);
+            pen.Color = drawColor;
+        }
+
+        private void trackBar3_Scroll(object sender, EventArgs e) {
+            drawColor = Color.FromArgb(trackBar1.Value, trackBar2.Value, trackBar3.Value);
+            pen.Color = drawColor;
         }
     }
 }
