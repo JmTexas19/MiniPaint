@@ -77,15 +77,23 @@ namespace MiniPaint {
             }
         }
 
+        //Line
         public void drawLine() {
             graphics.DrawLine(pen, new Point(drawPosX, drawPosY), new Point(releasePosX, releasePosY));
             pictureBox1.Image = bmp;
         }
 
+        //Rectangle
         public void drawRectangle() {
+            //Calculate Rectangle Size
+            int width = releasePosX - drawPosX;
+            int height = releasePosY - drawPosY;
 
+            graphics.DrawRectangle(pen, new Rectangle(new Point(drawPosX, drawPosY), new Size(width, height)));
+            pictureBox1.Image = bmp;
         }
 
+        //Ellipse
         public void drawEllipse() {
 
         }
