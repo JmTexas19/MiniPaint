@@ -11,9 +11,10 @@ namespace MiniPaint {
         /// </summary>
         [STAThread]
         static void Main() {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            //Start Form
+            Application.Run(new Paint());
+
+
         }
     }
 }
