@@ -15,6 +15,7 @@ namespace MiniPaint {
         int drawPosY;
         int releasePosX;
         int releasePosY;
+        bool firstRun = true;
 
         //Shapes
         enum MyShape {line, rectangle, ellipse};
@@ -142,6 +143,21 @@ namespace MiniPaint {
         private void trackBar3_Scroll(object sender, EventArgs e) {
             drawColor = Color.FromArgb(trackBar1.Value, trackBar2.Value, trackBar3.Value);
             pen.Color = drawColor;
+        }
+
+        private void Paint_Resize(object sender, EventArgs e) {
+            //Check if firstrun
+            if (firstRun == false) { 
+                //Create new bitmap and draw old one on top
+                Bitmap oldBmp = bmp;
+                bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+                graphics = Graphics.FromImage(bmp);
+                graphics.Clear(Color.White);
+                graphics.DrawImage(oldBmp, 0, 0, bmp.Width, bmp.Height);
+                pictureBox1.Image = bmp;
+            } else {
+                firstRun = false;
+            }
         }
     }
 }
