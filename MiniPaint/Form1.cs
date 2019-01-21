@@ -12,10 +12,14 @@ namespace MiniPaint {
     public partial class Paint : Form {
         public Paint() {
             InitializeComponent();
+
+            Bitmap bm = new Bitmap(1080, 720);
+            Graphics g = Graphics.FromImage(bm);
+
+            g.Clear(Color.White);
+
+            this.pictureBox1.Image = bm;
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e) {
-
-        }
     }
 }
