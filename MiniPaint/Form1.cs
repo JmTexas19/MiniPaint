@@ -110,6 +110,7 @@ namespace MiniPaint {
             new Pen(drawColor).Color = drawColor;
         }
 
+        //Resize Canvas
         private void Paint_Resize(object sender, EventArgs e) {
             //Check if firstrun
             if (firstRun == false) { 
