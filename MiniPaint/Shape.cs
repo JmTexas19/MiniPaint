@@ -8,12 +8,13 @@ using System.Windows.Forms;
 
 namespace MiniPaint {
     abstract public class Shape {
+        //Inherited Abstract Method
         abstract public void draw(Graphics graphics, Color color, Point point1, Point point2);
     }
 
     class ShapeLine : Shape {
         public override void draw(Graphics graphics, Color color, Point point1, Point point2) {
-            //Draw
+            //Draw Line
             graphics.DrawLine(new Pen(color), point1, point2);
         }
     }

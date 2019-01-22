@@ -26,7 +26,6 @@ namespace MiniPaint {
         Bitmap bmp;
         Graphics graphics;
         Color drawColor;
-        Pen pen;
 
         public Paint() {
             InitializeComponent();
@@ -38,9 +37,8 @@ namespace MiniPaint {
             graphics.Clear(Color.White);
             pictureBox1.Image = bmp;
 
-            //Create Pen
+            //Create Default Color
             drawColor = Color.Black;
-            pen = new Pen(drawColor);
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e) {
@@ -99,17 +97,17 @@ namespace MiniPaint {
         //Trackbars
         private void trackBar1_Scroll(object sender, EventArgs e) {
             drawColor = Color.FromArgb(trackBar1.Value, trackBar2.Value, trackBar3.Value);
-            pen.Color = drawColor;
+            new Pen(drawColor).Color = drawColor;
         }
 
         private void trackBar2_Scroll(object sender, EventArgs e) {
             drawColor = Color.FromArgb(trackBar1.Value, trackBar2.Value, trackBar3.Value);
-            pen.Color = drawColor;
+            new Pen(drawColor).Color = drawColor;
         }
 
         private void trackBar3_Scroll(object sender, EventArgs e) {
             drawColor = Color.FromArgb(trackBar1.Value, trackBar2.Value, trackBar3.Value);
-            pen.Color = drawColor;
+            new Pen(drawColor).Color = drawColor;
         }
 
         private void Paint_Resize(object sender, EventArgs e) {
@@ -121,14 +119,13 @@ namespace MiniPaint {
                 graphics = Graphics.FromImage(bmp);
 
                 //Improve Graphics
-                graphics.CompositingMode = CompositingMode.SourceCopy;
-                graphics.CompositingQuality = CompositingQuality.HighQuality;
                 graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 graphics.SmoothingMode = SmoothingMode.HighQuality;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
 
                 //Draw
-                graphics.DrawImage(oldBmp, 0, 0, bmp.Width, bmp.Height);
+                graphics.DrawImage(oldBmp, 0, 0, pictureBox1.Width, pictureBox1.Height);
                 pictureBox1.Image = bmp;  
             } else {
                 firstRun = false;
