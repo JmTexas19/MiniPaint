@@ -8,53 +8,53 @@ using System.Windows.Forms;
 
 namespace MiniPaint {
     abstract public class Shape {
-        abstract public void draw(Graphics graphics, Pen pen, int drawPosX, int drawPosY, int releasePosX, int releasePosY, PictureBox pictureBox1, Bitmap bmp);
+        abstract public void draw(Graphics graphics, Pen pen, Point point1, Point point2, PictureBox pictureBox1, Bitmap bmp);
     }
 
     class ShapeLine : Shape {
-        public override void draw(Graphics graphics, Pen pen, int drawPosX, int drawPosY, int releasePosX, int releasePosY, PictureBox pictureBox1, Bitmap bmp) {
+        public override void draw(Graphics graphics, Pen pen, Point point1, Point point2, PictureBox pictureBox1, Bitmap bmp) {
             //Draw
-            graphics.DrawLine(pen, new Point(drawPosX, drawPosY), new Point(releasePosX, releasePosY));
+            graphics.DrawLine(pen, point1, point2);
             pictureBox1.Image = bmp;
         }
     }
 
     class ShapeRectangle : Shape {
-        public override void draw(Graphics graphics, Pen pen, int drawPosX, int drawPosY, int releasePosX, int releasePosY, PictureBox pictureBox1, Bitmap bmp) {
+        public override void draw(Graphics graphics, Pen pen, Point point1, Point point2, PictureBox pictureBox1, Bitmap bmp) {
             //Calculate Rectangle Size
-            int width = releasePosX - drawPosX;
-            int height = releasePosY - drawPosY;
+            int width = point2.X - point1.X;
+            int height = point2.Y - point1.Y;
 
             //Check if rectangle is drawn in opposite direction
             if (width < 0) {
-                width = drawPosX - releasePosX;
+                width = point1.X - point2.X;
             }
             if (height < 0) {
-                height = drawPosY - releasePosY;
+                height = point1.Y -point2.Y;
             }
 
             //Draw
-            graphics.DrawRectangle(pen, new Rectangle(new Point(drawPosX, drawPosY), new Size(width, height)));
+            graphics.DrawRectangle(pen, new Rectangle(point1, new Size(width, height)));
             pictureBox1.Image = bmp;
         }
     }
 
     class ShapeEllipse : Shape {
-        public override void draw(Graphics graphics, Pen pen, int drawPosX, int drawPosY, int releasePosX, int releasePosY, PictureBox pictureBox1, Bitmap bmp) {
-            //Calculate Rectangle Size
-            int width = releasePosX - drawPosX;
-            int height = releasePosY - drawPosY;
+        public override void draw(Graphics graphics, Pen pen, Point point1, Point point2, PictureBox pictureBox1, Bitmap bmp) {
+            //Calculate Ellipse Size
+            int width = point2.X - point1.X;
+            int height = point2.Y - point1.Y;
 
             //Check if rectangle is drawn in opposite direction
             if (width < 0) {
-                width = drawPosX - releasePosX;
+                width = point1.X - point2.X;
             }
             if (height < 0) {
-                height = drawPosY - releasePosY;
+                height = point1.Y - point2.Y;
             }
 
             //Draw
-            graphics.DrawEllipse(pen, new RectangleF(new Point(drawPosX, drawPosY), new Size(width, height)));
+            graphics.DrawEllipse(pen, new RectangleF(point1, new Size(width, height)));
             pictureBox1.Image = bmp;
         }
     }
