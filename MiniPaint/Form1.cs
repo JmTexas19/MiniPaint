@@ -136,10 +136,14 @@ namespace MiniPaint {
         private void resizeCanvas() {
             //Check if firstrun
             if (firstRun == false) {
-                //Create new bitmap and draw old one on top
+                //Create new bitmapBG and draw old one on top
                 Bitmap oldBmp = bmpBG;
                 bmpBG = new Bitmap(bmpBG, pictureBox1.Width, pictureBox1.Height);
                 graphics = Graphics.FromImage(bmpBG);
+
+                //Create new bitmapFG and draw old one on top
+                bmpFG = new Bitmap(bmpBG, pictureBox1.Width, pictureBox1.Height);
+                graphics = Graphics.FromImage(bmpFG);
 
                 //Improve Graphics
                 graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
