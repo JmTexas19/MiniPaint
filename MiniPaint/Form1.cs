@@ -17,6 +17,7 @@ namespace MiniPaint {
         int releasePosX;
         int releasePosY;
         bool firstRun = true;
+        bool firstResize = true;
 
         //Shapes
         enum MyShape {line, rectangle, ellipse};
@@ -134,26 +135,21 @@ namespace MiniPaint {
 
         //Resize Canvas
         private void resizeCanvas() {
+            
             //Check if firstrun
-            if (firstRun == false) {
-                //Create new bitmapBG and draw old one on top
+            if (firstRun == false && firstResize == true) {
+                //Create new bitmapBG and bitmapFG
                 Bitmap oldBmp = bmpBG;
                 bmpBG = new Bitmap(bmpBG, pictureBox1.Width, pictureBox1.Height);
+                bmpFG = new Bitmap(bmpFG, pictureBox1.Width, pictureBox1.Height);
+
+                //Draw old image on top
                 graphics = Graphics.FromImage(bmpBG);
-
-                //Create new bitmapFG and draw old one on top
-                bmpFG = new Bitmap(bmpBG, pictureBox1.Width, pictureBox1.Height);
-                graphics = Graphics.FromImage(bmpFG);
-
-                //Improve Graphics
-                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                graphics.SmoothingMode = SmoothingMode.HighQuality;
-                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
-
-                //Draw
-                graphics.DrawImage(oldBmp, 0, 0, pictureBox1.Width, pictureBox1.Height);
+                graphics.Clear(Color.White);
+                graphics.DrawImage(oldBmp, 0, 0, oldBmp.Width, oldBmp.Height);
                 pictureBox1.Image = bmpBG;
+                firstResize = false;
+                
             } else {
                 firstRun = false;
             }
