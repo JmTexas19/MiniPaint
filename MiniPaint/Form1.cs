@@ -111,10 +111,14 @@ namespace MiniPaint {
             new Pen(drawColor).Color = drawColor;
         }
 
-        //Resize Canvas
         private void Paint_Resize(object sender, EventArgs e) {
+            resizeCanvas();
+        }
+
+        //Resize Canvas
+        private void resizeCanvas() {
             //Check if firstrun
-            if (firstRun == false) { 
+            if (firstRun == false) {
                 //Create new bitmap and draw old one on top
                 Bitmap oldBmp = bmp;
                 bmp = new Bitmap(bmp, pictureBox1.Width, pictureBox1.Height);
@@ -128,7 +132,7 @@ namespace MiniPaint {
 
                 //Draw
                 graphics.DrawImage(oldBmp, 0, 0, pictureBox1.Width, pictureBox1.Height);
-                pictureBox1.Image = bmp;  
+                pictureBox1.Image = bmp;
             } else {
                 firstRun = false;
             }
