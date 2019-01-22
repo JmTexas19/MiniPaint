@@ -49,8 +49,9 @@ namespace MiniPaint {
                 releasePosX = e.X;
                 releasePosY = e.Y;
 
+                //Draw Foreground Shape
                 graphics = Graphics.FromImage(bmpFG);
-                graphics.Clear(Color.White);
+                graphics.DrawImage(bmpBG, 0, 0);
                 drawChosenShape();
                 pictureBox1.Image = bmpFG;
             }
