@@ -23,7 +23,7 @@ namespace MiniPaint {
         MyShape currentShape = MyShape.line;
 
         //Objects
-        Bitmap bmp;
+        Bitmap bmpBG, bmpFG;
         Graphics graphics;
         Color drawColor;
 
@@ -31,14 +31,29 @@ namespace MiniPaint {
             InitializeComponent();
 
             //Create Bitmap for drawing
-            bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            bmp.SetResolution(1920, 1080)
-;           graphics = Graphics.FromImage(bmp);
+            bmpBG = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            bmpFG = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+;           graphics = Graphics.FromImage(bmpFG);
             graphics.Clear(Color.White);
-            pictureBox1.Image = bmp;
+            graphics = Graphics.FromImage(bmpBG);
+            graphics.Clear(Color.White);
+            pictureBox1.Image = bmpBG;
 
             //Create Default Color
             drawColor = Color.Black;
+        }
+
+        //Mouse Move
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e) {
+            if (e.Button == MouseButtons.Left) {
+                releasePosX = e.X;
+                releasePosY = e.Y;
+
+                graphics = Graphics.FromImage(bmpFG);
+                graphics.Clear(Color.White);
+                drawChosenShape();
+                pictureBox1.Image = bmpFG;
+            }
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e) {
@@ -53,7 +68,9 @@ namespace MiniPaint {
             releasePosY = e.Y;
 
             //Draw Shape
+            graphics = Graphics.FromImage(bmpBG);
             drawChosenShape();
+            pictureBox1.Image = bmpBG;
         }
 
         //Draw Shape Selected
@@ -79,7 +96,6 @@ namespace MiniPaint {
         //Draw Shape
         public void drawColoredShape(Color color, Shape shape) {
             shape.draw(graphics, color, new Point(drawPosX, drawPosY), new Point(releasePosX, releasePosY));
-            pictureBox1.Image = bmp;
         }
 
         //Buttons
@@ -120,9 +136,9 @@ namespace MiniPaint {
             //Check if firstrun
             if (firstRun == false) {
                 //Create new bitmap and draw old one on top
-                Bitmap oldBmp = bmp;
-                bmp = new Bitmap(bmp, pictureBox1.Width, pictureBox1.Height);
-                graphics = Graphics.FromImage(bmp);
+                Bitmap oldBmp = bmpBG;
+                bmpBG = new Bitmap(bmpBG, pictureBox1.Width, pictureBox1.Height);
+                graphics = Graphics.FromImage(bmpBG);
 
                 //Improve Graphics
                 graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
@@ -132,7 +148,7 @@ namespace MiniPaint {
 
                 //Draw
                 graphics.DrawImage(oldBmp, 0, 0, pictureBox1.Width, pictureBox1.Height);
-                pictureBox1.Image = bmp;
+                pictureBox1.Image = bmpBG;
             } else {
                 firstRun = false;
             }
