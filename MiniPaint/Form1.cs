@@ -79,7 +79,8 @@ namespace MiniPaint {
 
         //Draw Shape
         public void drawColoredShape(Color color, Shape shape) {
-            shape.draw(graphics, color, new Point(drawPosX, drawPosY), new Point(releasePosX, releasePosY), pictureBox1, bmp);
+            shape.draw(graphics, color, new Point(drawPosX, drawPosY), new Point(releasePosX, releasePosY));
+            pictureBox1.Image = bmp;
         }
 
         //Buttons

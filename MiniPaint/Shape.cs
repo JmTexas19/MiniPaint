@@ -8,19 +8,18 @@ using System.Windows.Forms;
 
 namespace MiniPaint {
     abstract public class Shape {
-        abstract public void draw(Graphics graphics, Color color, Point point1, Point point2, PictureBox pictureBox1, Bitmap bmp);
+        abstract public void draw(Graphics graphics, Color color, Point point1, Point point2);
     }
 
     class ShapeLine : Shape {
-        public override void draw(Graphics graphics, Color color, Point point1, Point point2, PictureBox pictureBox1, Bitmap bmp) {
+        public override void draw(Graphics graphics, Color color, Point point1, Point point2) {
             //Draw
             graphics.DrawLine(new Pen(color), point1, point2);
-            pictureBox1.Image = bmp;
         }
     }
 
     class ShapeRectangle : Shape {
-        public override void draw(Graphics graphics, Color color, Point point1, Point point2, PictureBox pictureBox1, Bitmap bmp) {
+        public override void draw(Graphics graphics, Color color, Point point1, Point point2) {
             //Calculate Rectangle Size
             int width = point2.X - point1.X;
             int height = point2.Y - point1.Y;
@@ -35,12 +34,11 @@ namespace MiniPaint {
 
             //Draw
             graphics.DrawRectangle(new Pen(color), new Rectangle(point1, new Size(width, height)));
-            pictureBox1.Image = bmp;
         }
     }
 
     class ShapeEllipse : Shape {
-        public override void draw(Graphics graphics, Color color, Point point1, Point point2, PictureBox pictureBox1, Bitmap bmp) {
+        public override void draw(Graphics graphics, Color color, Point point1, Point point2) {
             //Calculate Ellipse Size
             int width = point2.X - point1.X;
             int height = point2.Y - point1.Y;
@@ -55,7 +53,6 @@ namespace MiniPaint {
 
             //Draw
             graphics.DrawEllipse(new Pen(color), new RectangleF(point1, new Size(width, height)));
-            pictureBox1.Image = bmp;
         }
     }
 }
