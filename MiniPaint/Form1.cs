@@ -33,7 +33,7 @@ namespace MiniPaint {
             //Create Bitmap for drawing
             bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             bmp.SetResolution(1920, 1080)
-;            graphics = Graphics.FromImage(bmp);
+;           graphics = Graphics.FromImage(bmp);
             graphics.Clear(Color.White);
             pictureBox1.Image = bmp;
 
@@ -72,6 +72,7 @@ namespace MiniPaint {
                 shape = new ShapeEllipse();
             }
 
+            //Call draw method
             drawColoredShape(drawColor, shape);
         }
 
