@@ -136,7 +136,7 @@ namespace MiniPaint {
         //Resize Canvas
         private void resizeCanvas() {
             
-            //Check if firstrun
+            //Check if firstrun and first resize
             if (firstRun == false && firstResize == true) {
                 //Create new bitmapBG and bitmapFG
                 Bitmap oldBmp = bmpBG;
@@ -148,8 +148,7 @@ namespace MiniPaint {
                 graphics.Clear(Color.White);
                 graphics.DrawImage(oldBmp, 0, 0, oldBmp.Width, oldBmp.Height);
                 pictureBox1.Image = bmpBG;
-                firstResize = false;
-                
+                firstResize = false; 
             } else {
                 firstRun = false;
             }
