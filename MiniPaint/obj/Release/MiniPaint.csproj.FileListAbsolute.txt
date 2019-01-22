@@ -1,0 +1,14 @@
+C:\Users\DazedFury\source\repos\MiniPaint\MiniPaint\bin\Release\MiniPaint.exe.config
+C:\Users\DazedFury\source\repos\MiniPaint\MiniPaint\bin\Release\MiniPaint.exe.manifest
+C:\Users\DazedFury\source\repos\MiniPaint\MiniPaint\bin\Release\MiniPaint.application
+C:\Users\DazedFury\source\repos\MiniPaint\MiniPaint\bin\Release\MiniPaint.exe
+C:\Users\DazedFury\source\repos\MiniPaint\MiniPaint\bin\Release\MiniPaint.pdb
+C:\Users\DazedFury\source\repos\MiniPaint\MiniPaint\obj\Release\MiniPaint.csprojAssemblyReference.cache
+C:\Users\DazedFury\source\repos\MiniPaint\MiniPaint\obj\Release\MiniPaint.Paint.resources
+C:\Users\DazedFury\source\repos\MiniPaint\MiniPaint\obj\Release\MiniPaint.Properties.Resources.resources
+C:\Users\DazedFury\source\repos\MiniPaint\MiniPaint\obj\Release\MiniPaint.csproj.GenerateResource.cache
+C:\Users\DazedFury\source\repos\MiniPaint\MiniPaint\obj\Release\MiniPaint.csproj.CoreCompileInputs.cache
+C:\Users\DazedFury\source\repos\MiniPaint\MiniPaint\obj\Release\MiniPaint.exe.manifest
+C:\Users\DazedFury\source\repos\MiniPaint\MiniPaint\obj\Release\MiniPaint.application
+C:\Users\DazedFury\source\repos\MiniPaint\MiniPaint\obj\Release\MiniPaint.exe
+C:\Users\DazedFury\source\repos\MiniPaint\MiniPaint\obj\Release\MiniPaint.pdb

@@ -57,7 +57,7 @@ namespace MiniPaint {
         }
 
         //Draw Shape Selected
-        private void drawShape() {
+        private void drawChosenShape() {
             Shape shape = null;
 
             if (currentShape == MyShape.line) {
