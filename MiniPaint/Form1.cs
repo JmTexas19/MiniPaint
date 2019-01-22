@@ -53,7 +53,7 @@ namespace MiniPaint {
             releasePosY = e.Y;
 
             //Draw Shape
-            drawShape();
+            drawChosenShape();
         }
 
         //Draw Shape Selected
