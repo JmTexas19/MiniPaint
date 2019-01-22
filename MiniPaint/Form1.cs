@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,7 +33,8 @@ namespace MiniPaint {
 
             //Create Bitmap for drawing
             bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            graphics = Graphics.FromImage(bmp);
+            bmp.SetResolution(1920, 1080)
+;            graphics = Graphics.FromImage(bmp);
             graphics.Clear(Color.White);
             pictureBox1.Image = bmp;
 
@@ -114,11 +116,19 @@ namespace MiniPaint {
             if (firstRun == false) { 
                 //Create new bitmap and draw old one on top
                 Bitmap oldBmp = bmp;
-                bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+                bmp = new Bitmap(bmp, pictureBox1.Width, pictureBox1.Height);
                 graphics = Graphics.FromImage(bmp);
-                graphics.Clear(Color.White);
+
+                //Improve Graphics
+                graphics.CompositingMode = CompositingMode.SourceCopy;
+                graphics.CompositingQuality = CompositingQuality.HighQuality;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                //Draw
                 graphics.DrawImage(oldBmp, 0, 0, bmp.Width, bmp.Height);
-                pictureBox1.Image = bmp;
+                pictureBox1.Image = bmp;  
             } else {
                 firstRun = false;
             }
